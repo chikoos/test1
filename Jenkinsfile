@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh 'echo Running unit tests'
                 sh '''
-                docker run -i --rm ${DOCKER_IMAGE_TAG} "npm run unit-test"
+                docker run -i --rm ${DOCKER_IMAGE_TAG} npm run unit-test
                 '''
             }
         }
