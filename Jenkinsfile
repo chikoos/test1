@@ -1,19 +1,32 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKER_IMAGE_TAG = "my-app:build-${env.BUILD_ID}"
+    }
+    
     stage('Checkout'){
         'echo cloning the project'
         checkout scm
     }
     stage('Docker Image Build') {
         'echo Creating docker image'
-        sh("docker build -t node-app-${BUILD_NUMBER} -f ./Dockerfile)
+        docker.build("${env.DOCKER_IMAGE_TAG}",  '-f ./Dockerfile .')
     }
     stage('Build - checks lint'){
         'echo building the app'
-        sh("docker run -it node-app-${BUILD_NUMBER})
+        steps {
+            sh '''
+            docker run -it --rm "${env.DOCKER_IMAGE_TAG}"
+            '''
+        }
     }
     stage('Unit Tests'){
         echo 'Running unit tests'
-        sh("docker run -it node-app-${BUILD_NUMBER} npm run unit-test)
+        steps {
+            sh '''
+            docker run -it --rm "${env.DOCKER_IMAGE_TAG}" "npm run unit-test"
+            '''
+        }
     }
 }
