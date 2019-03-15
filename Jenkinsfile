@@ -5,12 +5,6 @@ pipeline {
         DOCKER_IMAGE_TAG = "my-app:build-${env.BUILD_ID}"
     }
     stages {
-        stage('Checkout'){
-            steps {
-                sh 'echo cloning the project'
-                checkout scm
-            }
-        }
         stage('Docker Image Build') {
             steps {
                 sh 'echo Creating docker image'
