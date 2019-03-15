@@ -5,11 +5,19 @@ pipeline {
         DOCKER_IMAGE_TAG = "my-app:${BUILD_ID}"
     }
     stages {
+        stage('Containerizing application') {
+            steps {
+                sh 'echo packaging application in a docker image'
+                sh '''
+                docker build -t ${DOCKER_IMAGE_TAG} .
+                '''
+            }
+        }
         stage('Lint'){
             steps {
                 sh 'echo checking linting'
                 sh '''
-                npm run build
+                docker run --rm -i ${DOCKER_IMAGE_TAG} npm run build
                 '''
             }
         }
@@ -17,15 +25,7 @@ pipeline {
             steps {
                 sh 'echo checking code coverage'
                 sh '''
-                npm run cov
-                '''
-            }
-        }
-        stage('Packaging application') {
-            steps {
-                sh 'echo packaging application in a docker image'
-                sh '''
-                docker build -t ${DOCKER_IMAGE_TAG} .
+                docker run --rm -i ${DOCKER_IMAGE_TAG} npm run cov
                 '''
             }
         }
