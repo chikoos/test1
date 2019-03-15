@@ -1,6 +1,6 @@
 {
-  "name": "testapp",
-  "version": "1.0.0",
+  "name": "devops-test1",
+  "version": "0.0.1",
   "description": "Test App",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "eslint": "5.15.1",
-    "jest": "^24.5.0"
+    "jest": "24.5.0"
   },
   "dependencies": {
     "express": "4.16.4"
