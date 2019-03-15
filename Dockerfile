@@ -3,6 +3,8 @@ FROM node:10.15-alpine AS intermediate
 WORKDIR /app
 # copy project file
 COPY package*.json ./
+# set npm proxy
+RUN npm config set proxy "http://forwardproxy.extnp.national.com.au:3128/"
 # install node packages
 RUN npm set progress=false && \
     npm install
