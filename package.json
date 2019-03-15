@@ -1,17 +1,17 @@
 {
-  "name": "devops-test1",
+  "name": "devops-test",
   "version": "0.0.1",
   "description": "Test App",
   "main": "index.js",
   "scripts": {
-    "build": "npm run lint",
     "lint": "eslint lib",
     "fixlint": "eslint ./lib ./tests --fix",
-    "unit-test": "jest 'tests/unit/**/*.test.js'"
+    "unit-test": "jest 'tests/unit/**/*.test.js'",
+    "cov": "jest --collectCoverageFrom=lib/**.js --collectCoverageFrom=tests/unit/**/*.js --coverage lib --coverage tests"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:chikoos/test1.git"
+    "url": "git@github.com:chikoos/test2.git"
   },
   "devDependencies": {
     "eslint": "5.15.1",
