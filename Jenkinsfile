@@ -6,7 +6,7 @@ pipeline {
     }
     stage('Docker Image Build') {
         'echo Creating docker image'
-        sh("docker build -t node-app-${BUILD_NUMBER} .)
+        sh("docker build -t node-app-${BUILD_NUMBER} -f ./Dockerfile)
     }
     stage('Build - checks lint'){
         'echo building the app'
