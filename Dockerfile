@@ -9,8 +9,7 @@ RUN npm config set proxy "http://forwardproxy.extnp.national.com.au:3128/"
 RUN npm set progress=false && \
     npm install
 
-FROM alpine:3.5
-RUN apk add --no-cache nodejs
+FROM node:10.15-alpine
 # copy node_modules
 COPY --from=intermediate /app/node_modules ./node_modules
 # copy app sources
