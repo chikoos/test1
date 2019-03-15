@@ -1,4 +1,4 @@
-FROM node:10.15-alpine AS intermediate
+FROM node:8.15-alpine
 # set working directory
 WORKDIR /app
 # copy project file
@@ -7,11 +7,7 @@ COPY package*.json ./
 RUN npm config set proxy "http://forwardproxy.extnp.national.com.au:3128/"
 # install node packages
 RUN npm set progress=false && \
-    npm install
-
-FROM node:10.15-alpine
-# copy node_modules
-COPY --from=intermediate /app/node_modules ./node_modules
+    npm install && \
+    npm cache clean --force
 # copy app sources
 COPY . .
-CMD npm run build
