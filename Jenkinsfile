@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'echo checking linting'
                 sh '''
-                docker run --rm -i ${DOCKER_IMAGE_TAG} npm run build
+                docker run --rm -i ${DOCKER_IMAGE_TAG} npm run lint
                 '''
             }
         }
