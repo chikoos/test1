@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'echo building the app'
                 sh '''
-                docker run -i --rm ${DOCKER_IMAGE_TAG}
+                docker run -i --rm ${DOCKER_IMAGE_TAG} npm run build
                 '''
             }
         }
