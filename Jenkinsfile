@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'echo building the app'
                 sh '''
-                docker run -it --rm ${DOCKER_IMAGE_TAG}
+                docker run -i --rm ${DOCKER_IMAGE_TAG}
                 '''
             }
         }
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh 'echo Running unit tests'
                 sh '''
-                docker run -it --rm ${DOCKER_IMAGE_TAG} "npm run unit-test"
+                docker run -i --rm ${DOCKER_IMAGE_TAG} "npm run unit-test"
                 '''
             }
         }
